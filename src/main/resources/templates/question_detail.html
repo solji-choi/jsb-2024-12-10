@@ -5,13 +5,17 @@
     <title>Question Detail</title>
     <style>
       * { margin:0; padding:0; }
-      ul, li { list-style:none; }
+      .detail { max-width:1200px; margin:30px auto 0; color:#333; border-top:2px solid #000; }
+      h1 { padding:20px 0; margin-bottom:20px; font-size:22px; font-weight:600; border-bottom: 1px solid #ccc; }
+      .detail div { font-size:16px; line-height:1.4em; }
     </style>
 </head>
 <body>
 <div class="wrap">
-    <h1>제목</h1>
-    <p>내용</p>
+    <div class="detail">
+        <h1 th:text="${question.subject}"></h1>
+        <div th:text="${question.content}"></div>
+    </div>
 </div>
 </body>
 </html>
