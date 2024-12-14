@@ -5,11 +5,18 @@
     <title>Question Detail</title>
     <style>
       * { margin:0; padding:0; }
+      ul, li { list-style:none; }
         .detail { max-width:1200px; margin:30px auto 0; color:#333; border-top:2px solid #000; }
         h1 { padding:20px 0; margin-bottom:20px; font-size:22px; font-weight:600; border-bottom: 1px solid #ccc; }
         .detail div { font-size:16px; line-height:1.4em; }
 
         .answerWrap { margin-top:20px; padding-top:20px; border-top: 1px solid #ccc; }
+
+        .answer_list { margin-bottom:10px; }
+        .answer_list h5 { margin-bottom:10px; font-size:20px; font-weight:600; }
+        .answer_list li { padding-bottom:10px; }
+        .answer_list li:before { content:'└ '; }
+
         .answerWrap textarea { display:block; width:100%; font-size:14px; line-height:1.4em; padding:10px; border:1px solid #ccc; box-sizing:border-box; }
         .answerWrap button { display:block; margin-top:10px; width:150px; height: 50px; line-height:50px; font-size:16px; font-weight:600; color:#fff; background:#333; border-radius:10px; border:none; cursor:pointer; }
     </style>
@@ -21,6 +28,13 @@
         <div th:text="${question.content}"></div>
 
         <div class="answerWrap">
+            <div class="answer_list">
+                <h5 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+                <ul>
+                    <li th:each="answer : ${question.answerList}" th:text="${answer.content}"></li>
+                </ul>
+            </div>
+
             <form th:action="@{|/answer/create/${question.id}|}" method="post">
                <textarea name="content" id="content" rows="15"></textarea>
                 <button type="submit">답변 등록</button>

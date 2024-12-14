@@ -27,6 +27,6 @@ public class AnswerController {
 
         this.answerService.create(question, content);
 
-        return String.format("redirect:/quesion/detail/%s", id);
+        return String.format("redirect:/question/detail/%s", id);
     }
 }
