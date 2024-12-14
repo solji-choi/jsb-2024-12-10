@@ -10,19 +10,20 @@
 
         .wrap {  }
         ul { max-width:1200px; margin:30px auto 0; border-top:2px solid #000; }
-        li { display:table; width:100%; padding:15px; text-align:left; border-bottom: 1px solid #ccc; table-layout:fixed; box-sizing:border-box; }
-        li > span { display:table-cell; vertical-align:middle; font-size:16px; }
-        li > span span { display:block; width:100%; padding-right:10px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; box-sizing:border-box; }
-        li > span:last-child { width:220px; text-align:right; font-size:14px; color:#ccc; }
+        li a { display:table; width:100%; padding:15px; text-align:left; text-decoration:none; border-bottom: 1px solid #ccc; table-layout:fixed; box-sizing:border-box; }
+        li a:hover { font-weight:600; }
+        li a > span { display:table-cell; vertical-align:middle; font-size:16px; color:#333; }
+        li a > span span { display:block; width:100%; padding-right:10px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; box-sizing:border-box; }
+        li a > span:last-child { width:220px; text-align:right; font-size:14px; color:#ccc; }
     </style>
 </head>
 <body>
 <div class="wrap">
     <ul>
-        <li th:each="question : ${questionList}">
+        <li th:each="question : ${questionList}"><a th:href="@{|/question/detail/${question.id}|}">
             <span><span th:text="${question.subject}"></span></span>
             <span th:text="${question.createDate}"></span>
-        </li>
+        </a></li>
     </ul>
 </div>
 </body>
