@@ -5,9 +5,13 @@
     <title>Question Detail</title>
     <style>
       * { margin:0; padding:0; }
-      .detail { max-width:1200px; margin:30px auto 0; color:#333; border-top:2px solid #000; }
-      h1 { padding:20px 0; margin-bottom:20px; font-size:22px; font-weight:600; border-bottom: 1px solid #ccc; }
-      .detail div { font-size:16px; line-height:1.4em; }
+        .detail { max-width:1200px; margin:30px auto 0; color:#333; border-top:2px solid #000; }
+        h1 { padding:20px 0; margin-bottom:20px; font-size:22px; font-weight:600; border-bottom: 1px solid #ccc; }
+        .detail div { font-size:16px; line-height:1.4em; }
+
+        .answerWrap { margin-top:20px; padding-top:20px; border-top: 1px solid #ccc; }
+        .answerWrap textarea { display:block; width:100%; font-size:14px; line-height:1.4em; padding:10px; border:1px solid #ccc; box-sizing:border-box; }
+        .answerWrap button { display:block; margin-top:10px; width:150px; height: 50px; line-height:50px; font-size:16px; font-weight:600; color:#fff; background:#333; border-radius:10px; border:none; cursor:pointer; }
     </style>
 </head>
 <body>
@@ -15,7 +19,14 @@
     <div class="detail">
         <h1 th:text="${question.subject}"></h1>
         <div th:text="${question.content}"></div>
-    </div>
+
+        <div class="answerWrap">
+            <form th:action="@{|/answer/create/${question.id}|}" method="post">
+               <textarea name="content" id="content" rows="15"></textarea>
+                <button type="submit">답변 등록</button>
+            </form>
+        </div>
+    </div>s
 </div>
 </body>
 </html>
