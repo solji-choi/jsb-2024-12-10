@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Question List</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-    <style>
-        .wrap {  }
-        ul { max-width:1200px; margin:30px auto 0; border-top:2px solid #000; }
-        li a { display:table; width:100%; padding:15px; text-align:left; text-decoration:none; border-bottom: 1px solid #ccc; table-layout:fixed; box-sizing:border-box; }
-        li a:hover { font-weight:600; }
-        li a > span { display:table-cell; vertical-align:middle; font-size:16px; color:#333; }
-        li a > span span { display:block; width:100%; padding-right:10px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; box-sizing:border-box; }
-        li a > span:last-child { width:220px; text-align:right; font-size:14px; color:#ccc; }
-    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}" />
 </head>
 <body>
-<div class="wrap">
-    <ul>
-        <li th:each="question : ${questionList}"><a th:href="@{|/question/detail/${question.id}|}">
-            <span><span th:text="${question.subject}"></span></span>
-            <span th:text="${question.createDate}"></span>
-        </a></li>
-    </ul>
+<div class="container my-3">
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일시</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="question, loop : ${questionList}">
+                <td th:text="${loop.count}"></td>
+                <td>
+                    <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                </td>
+                <td th:text ="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
